@@ -38,3 +38,11 @@ urlpatterns += [
     path('book/<int:pk>/update/', views.BookUpdate.as_view(), name='book_update'),
     path('book/<int:pk>/delete/', views.BookDelete.as_view(), name='book_delete'),
 ]
+
+# 追加：ログイン機能
+urlpatterns += [
+    path('top/', views.Top.as_view(), name='top'),
+    path('login/', views.Login.as_view(), name='login'),
+    path('logout/', views.Logout.as_view(), name='logout'),
+    path('signup/', views.Signup.as_view(), name='signup'),
+]

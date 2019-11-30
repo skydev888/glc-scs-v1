@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+{% block content2 %}
+  <div class="container">
+    <h4>User login</h4><hr>
+    <form action="" method="post" novalidate>
+        <div>
+            {{ form.non_field_errors }}
+            {% for field in form %}
+                {{ field }}
+                {{ field.errors }}
+                <hr>
+            {% endfor %}
+            <button type="submit"" >ログイン</button>
+            <input type="hidden" name="next" value="{{ next }}" />
+            {% csrf_token %}
+        </div>
+    </form>
+  </div>
+{% endblock %}

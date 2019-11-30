@@ -3,12 +3,18 @@
 <head>
   
   {% block title %}<title>scs-v1</title>{% endblock %}
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
+
+  <!-- 追加：ログイン機能 -->
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+
   <!-- Add additional CSS in static file -->
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
@@ -20,20 +26,24 @@
 <div class="row">
   <div class="col-sm-2">
   {% block sidebar %}<hr>
-  <h5>Menu</h5><hr>
+  <h4><a href="{% url 'top' %}">SCS-version1.01</a></h4><hr>
+  <h5>UserMenu</h5>
   <ul class="sidebar-nav">
-    <li><a href="{% url 'index' %}">Home</a></li>
-    <li><a href="{% url 'books' %}">All books</a></li>
-    <li><a href="{% url 'authors' %}">All authors</a></li>
+    <li class="nav-item"><a class="nav-item nav-link" href="{% url 'index' %}">Home</a></li>
+    <li class="nav-item"><a class="nav-item nav-link" href="{% url 'books' %}">All books</a></li>
+    <li class="nav-item"><a class="nav-item nav-link" href="{% url 'authors' %}">All authors</a></li>
   </ul>
   <hr>
+  <h5>Signup/Login</h5>
   <ul class="sidebar-nav">
    {% if user.is_authenticated %}
-     <li>User: {{ user.get_username }}</li>
-     <li><a href="{% url 'my-borrowed' %}">My Borrowed</a></li>
-     <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>   
+     <li class="nav-item">User: {{ user.get_username }}</li>
+     <li class="nav-item"><a class="nav-item nav-link" href="{% url 'my-borrowed' %}">My Borrowed</a></li>
+     <li class="nav-item"><a class="nav-item nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
    {% else %}
-     <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>   
+     <!-- <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li> グレーアウト -->
+     <li class="nav-item"><a class="nav-item nav-link" href="{% url 'login' %}">Login</a></li>
+     <li class="nav-item"><a class="nav-item nav-link" href="{% url 'signup' %}">Signup</a></li>
    {% endif %} 
   </ul>
   
@@ -49,7 +59,7 @@
  
 {% endblock %}
   </div>
-  <div class="col-sm-10 "><hr>
+  <div class="col-sm-10 ">
   {% block content %}{% endblock %}
   
   {% block pagination %}
@@ -70,6 +80,24 @@
     {% endif %}
   {% endblock %} 
   <hr>
+
+  <!--　追加：ログイン機能 -->
+    <!-- メインコンテント -->
+    <div class="container mt-3">
+        {% block content2 %}{% endblock %}
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+            integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+            crossorigin="anonymous"></script>
   
   </div>
 </div>

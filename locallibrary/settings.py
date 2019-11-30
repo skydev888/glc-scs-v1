@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Add our new application 
-    'catalog.apps.CatalogConfig', #This object was created for us in /catalog/apps.py
+    'catalog.apps.CatalogConfig',
+    'widget_tweaks',  # 追加：ユーザーログイン機能
 ]
 
 MIDDLEWARE = [
@@ -157,3 +158,8 @@ STATIC_URL = '/static/'
 # Static file serving.
 # http://whitenoise.evans.io/en/stable/django.html#django-middleware
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+# 追加：ログイン機能　https://narito.ninja/blog/detail/40/
+LOGIN_URL = 'catalog:top'
+LOGIN_REDIRECT_URL = 'catalog:top'
