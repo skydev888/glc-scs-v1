@@ -5,7 +5,7 @@ from django.contrib import admin
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('catalog/', include('catalog.urls')),
-    path('usersapp/', include('django.contrib.auth.urls')),  # 追加:ユーザー登録アプリ
+    path('usersapp/', include('usersapp.urls')),  # 追加:ユーザー登録アプリ
 ]
 
 
