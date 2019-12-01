@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Add our new application 
-    'catalog.apps.CatalogConfig', #This object was created for us in /catalog/apps.py
+    'catalog.apps.CatalogConfig',
+    'usersapp.apps.UsersappConfig',
 ]
 
 MIDDLEWARE = [
@@ -157,3 +158,10 @@ STATIC_URL = '/static/'
 # Static file serving.
 # http://whitenoise.evans.io/en/stable/django.html#django-middleware
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+
+
+# 追加：独自ログイン機能
+LOGIN_URL = 'usersapp:login'
+LOGIN_REDIRECT_URL = 'usersapp:top'

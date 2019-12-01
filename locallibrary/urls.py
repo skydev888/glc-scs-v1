@@ -58,3 +58,8 @@ urlpatterns += [
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
 ]
+
+# 追加：ユーザー登録アプリ
+urlpatterns += [
+    path('usresapp/', include('django.contrib.auth.urls')),
+]
