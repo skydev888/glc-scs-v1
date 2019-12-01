@@ -1,8 +1,11 @@
 {% extends "usersapp/base.html" %}
 {% block content %}
-<p>users app</p>
+<h4>Use login</h4><hr>
+<ul>
+    <li>Here is user login page.</li>
+</ul>
 <form action="" method="POST">
-    <div class="col-md-6 offset-md-3">
+    <div class="col-auto">
         <div class="card">
             <div class="card-body">
                 {{ form.non_field_errors }}
@@ -11,7 +14,7 @@
                     {{ field.errors }}
                     <hr>
                 {% endfor %}
-                <button type="submit" class="btn btn-success btn-lg btn-block" >ログイン</button>
+                <button type="submit">Login</button>
                 <input type="hidden" name="next" value="{{ next }}" />
                 {% csrf_token %}
             </div>

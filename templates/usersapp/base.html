@@ -1,85 +1,85 @@
-<!doctype html>
-<html lang="ja">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
-          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  {% block title %}<title>scs-version1.02(branch3)</title>{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <title>scs-version1.02[branch3]</title>
+  <!-- Add additional CSS in static file -->
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <!--　ヘッダー -->
-    <h3>scs-version1.02(branch3)</h3>
-    <hr>
-    <!-- ナビバー -->
-    <h5>Catalog app</h5>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="{% url 'usersapp:top' %}">ホームページ名</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          {% if user.is_authenticated %}
-          <li>
-            <a class="nav-item nav-link" href="{% url 'catalog:logout' %}">ログアウト</a>
-          </li>
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-item nav-link" href="{% url 'catalog:login' %}">
-            ようこそ、ゲスト！ログインはこちら
-          </a>
-          </li>
-          {% endif %}
-        </ul>
-      </div>
-    </nav>
-<!-- ナビバー -->
-    <hr>
-    <h5>Usres app</h5>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="{% url 'usersapp:top' %}">ホームページ名</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<div class="container-fluid">
+<!-- サイドバー -->
+<div class="row">
+  <div class="col-sm-2">
+  {% block sidebar %}
+  <h4>scs-version1.02<br>(branch3)</h4>
+  <hr>
+  <h5>User menu</h5>
+  <ul class="sidebar-nav">
+    <li><a class="nav-item nav-link" href="">Menu-1</a></li>
+    <li><a class="nav-item nav-link" href="">Menu-2</a></li>
+    <li><a class="nav-item nav-link" href="">Menu-3</a></li>
+    <li><a class="nav-item nav-link" href="">Menu-4</a></li>
+    <li><a class="nav-item nav-link" href="">Menu-5</a></li>
+  </ul>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          {% if user.is_authenticated %}
-          <li>
-            <a class="nav-item nav-link" href="{% url 'usresapp:logout' %}">ログアウト</a>
-          </li>
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-item nav-link" href="{% url 'usresapp:login' %}">
-            ようこそ、ゲスト！ログインはこちら
-          </a>
-          </li>
-          {% endif %}
-        </ul>
-      </div>
-    </nav>
+  <hr>
+  <h5>Signup/Login</h5>
+  <ul class="sidebar-nav">
+   {% if user.is_authenticated %}
+     <li>User: {{ user.get_username }}</li>
+     <li><a href="{% url 'usersapp:logout'%}?next={{request.path}}">Logout</a></li>
+   {% else %}
+    <li><a class="nav-item nav-link" href="{% url 'usersapp:signup' %}">Signup</a></li>
+    <li><a class="nav-item nav-link" href="{% url 'usersapp:login' %}">Login</a></li>
+   {% endif %}
+  </ul>
 
-    <!-- メインコンテント -->
-    <div class="container mt-3">
-        {% block content %}{% endblock %}
-    </div>
+   {% if user.is_staff %}
+   <hr />
+   <ul class="sidebar-nav">
+   <li>Staff</li>
+   </ul>
+    {% endif %}
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
-            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
-            integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-            crossorigin="anonymous"></script>
+    {% endblock %}
+  </div>
+<!-- サイドバー -->
+
+<!-- メインコンテント -->
+  <div class="col-sm-10 ">
+  {% block content %}{% endblock %}
+
+  {% block pagination %}
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+  {% endblock %}
+
+
+  </div>
+</div>
+
+</div>
 </body>
 </html>
