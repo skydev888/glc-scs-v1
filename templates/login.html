@@ -10,7 +10,7 @@
                 {{ field.errors }}
                 <hr>
             {% endfor %}
-            <button type="submit"" >ログイン</button>
+            <button type="submit">ログイン</button>
             <input type="hidden" name="next" value="{{ next }}" />
             {% csrf_token %}
         </div>

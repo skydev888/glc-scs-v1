@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # Add our new application 
     'catalog.apps.CatalogConfig',
     'widget_tweaks',  # 追加：ユーザーログイン機能
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -119,21 +120,16 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
 
-# Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = '/'
+# # Redirect to home URL after login (Default redirects to /accounts/profile/)
+# LOGIN_REDIRECT_URL = '/'
 
 # Add to test email:
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -147,19 +143,12 @@ DATABASES['default'].update(db_from_env)
 
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.1/howto/static-files/
-# The absolute path to the directory where collectstatic will collect static files for deployment.
+# Static files
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# The URL to use when referring to static files (where they will be served from)
 STATIC_URL = '/static/'
-
-
-# Static file serving.
-# http://whitenoise.evans.io/en/stable/django.html#django-middleware
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # WhiteNoise=静的ファイル配信ライブラリ
 
 
 # 追加：ログイン機能　https://narito.ninja/blog/detail/40/
-LOGIN_URL = 'catalog:top'
-LOGIN_REDIRECT_URL = 'catalog:top'
+LOGIN_URL = 'users:top'
+LOGIN_REDIRECT_URL = 'users:top'
