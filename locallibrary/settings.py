@@ -122,6 +122,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # 追加：独自ログイン機能
-LOGIN_URL = 'usersapp:top'
-LOGIN_REDIRECT_URL = 'usersapp:top'
-LOGOUT_REDIRECT_URL = 'usersapp:top'
+LOGIN_URL = 'usersapp:login'
+LOGIN_REDIRECT_URL = 'usersapp:mypage'
+LOGOUT_REDIRECT_URL = 'usersapp:login'

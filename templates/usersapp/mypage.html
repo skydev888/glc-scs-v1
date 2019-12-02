@@ -1,0 +1,17 @@
+{% extends "usersapp/base.html" %}
+{% block content %}
+<h4>myPage</h4><hr>
+<div class="col-auto">
+  <h5 class="title">
+    {{title}}
+  </h5>
+  <ul>
+   {% if user.is_authenticated %}
+     <li>Wellcome to SCS-version1.02!!</li>
+     <li class="nav-item">USER NAME: {{ user.get_username }}</li>
+     <li class="nav-item">EMAIL: {{ user.get_email }}</li>
+     <li class="nav-item">PASSWORD: {{ user.get_password }}</li>
+   {% endif %}
+  </ul><hr>
+</div>
+{% endblock %}
